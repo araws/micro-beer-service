@@ -1,6 +1,5 @@
 package pl.antygravity.microbeerservice.web.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +11,6 @@ import pl.antygravity.microbeerservice.web.model.BeerDto;
 import java.util.UUID;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(BeerController.class)
@@ -38,8 +36,8 @@ class BeerControllerTest {
         String beerDtoJson = objectMapper.writeValueAsString(beerDto);
 
         mockMvc.perform(post("/api/v1/beer/")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(beerDtoJson))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(beerDtoJson))
                 .andExpect(status().isCreated());
     }
 
@@ -50,8 +48,8 @@ class BeerControllerTest {
         String beerDtoJson = objectMapper.writeValueAsString(beerDto);
 
         mockMvc.perform(put("/api/v1/beer/" + UUID.randomUUID())
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(beerDtoJson))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(beerDtoJson))
                 .andExpect(status().isNoContent());
     }
 }
